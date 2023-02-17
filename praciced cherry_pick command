@@ -1,0 +1,90 @@
+thundersoft@desk053:~/amend_command$ cd ..
+thundersoft@desk053:~$ mkdir cherry_pick
+thundersoft@desk053:~$ cxd cherry_pick
+Command 'cxd' not found, did you mean:
+  command 'lxd' from snap lxd (5.10-b392610)
+  command 'cxl' from deb ndctl (72.1-1)
+  command 'axd' from deb afnix (3.5.0-3)
+  command 'kxd' from deb kxd (0.15-3)
+  command 'lxd' from deb lxd-installer (1)
+  command 'xd' from deb xd (3.29.02-1)
+  command 'xxd' from deb xxd (2:8.2.3995-1ubuntu2.3)
+See 'snap info <snapname>' for additional versions.
+thundersoft@desk053:~$ cd cherry_pick
+thundersoft@desk053:~/cherry_pick$ git init
+hint: Using 'master' as the name for the initial branch. This default branch name
+hint: is subject to change. To configure the initial branch name to use in all
+hint: of your new repositories, which will suppress this warning, call:
+hint: 
+hint: 	git config --global init.defaultBranch <name>
+hint: 
+hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+hint: 'development'. The just-created branch can be renamed via this command:
+hint: 
+hint: 	git branch -m <name>
+Initialized empty Git repository in /home/thundersoft/cherry_pick/.git/
+thundersoft@desk053:~/cherry_pick$ vi index.txt
+thundersoft@desk053:~/cherry_pick$ git add .
+thundersoft@desk053:~/cherry_pick$ git commit -m "first commit"
+[master (root-commit) 6c9c99e] first commit
+ 1 file changed, 1 insertion(+)
+ create mode 100644 index.txt
+thundersoft@desk053:~/cherry_pick$ git branch 1.0
+thundersoft@desk053:~/cherry_pick$ git branch 2.0
+thundersoft@desk053:~/cherry_pick$ git branch 3.0
+thundersoft@desk053:~/cherry_pick$ git branch
+  1.0
+  2.0
+  3.0
+* master
+thundersoft@desk053:~/cherry_pick$ git checkout 3.0
+Switched to branch '3.0'
+thundersoft@desk053:~/cherry_pick$ vi text.txt
+thundersoft@desk053:~/cherry_pick$ git add .
+thundersoft@desk053:~/cherry_pick$ git commit -m "feature branch commit 3.0"
+[3.0 5f5cb7e] feature branch commit 3.0
+ 1 file changed, 1 insertion(+)
+ create mode 100644 text.txt
+thundersoft@desk053:~/cherry_pick$ git log --oneline
+5f5cb7e (HEAD -> 3.0) feature branch commit 3.0
+6c9c99e (master, 2.0, 1.0) first commit
+thundersoft@desk053:~/cherry_pick$ vi bug_fix.txt
+thundersoft@desk053:~/cherry_pick$ git add .
+thundersoft@desk053:~/cherry_pick$ git commit -m "bug_fix commit"
+[3.0 53efc81] bug_fix commit
+ 1 file changed, 1 insertion(+)
+ create mode 100644 bug_fix.txt
+thundersoft@desk053:~/cherry_pick$ git log --oneline
+53efc81 (HEAD -> 3.0) bug_fix commit
+5f5cb7e feature branch commit 3.0
+6c9c99e (master, 2.0, 1.0) first commit
+thundersoft@desk053:~/cherry_pick$ git checkout 2.0
+Switched to branch '2.0'
+thundersoft@desk053:~/cherry_pick$ git log --oneline
+6c9c99e (HEAD -> 2.0, master, 1.0) first commit
+thundersoft@desk053:~/cherry_pick$ git cherry-pick 53efc81
+[2.0 6212f53] bug_fix commit
+ Date: Fri Feb 17 11:19:39 2023 +0530
+ 1 file changed, 1 insertion(+)
+ create mode 100644 bug_fix.txt
+thundersoft@desk053:~/cherry_pick$ git log --oneline
+6212f53 (HEAD -> 2.0) bug_fix commit
+6c9c99e (master, 1.0) first commit
+thundersoft@desk053:~/cherry_pick$ git checkout 1.0
+Switched to branch '1.0'
+thundersoft@desk053:~/cherry_pick$ git log --oneline
+6c9c99e (HEAD -> 1.0, master) first commit
+thundersoft@desk053:~/cherry_pick$ git cherry-pick 53efc81
+[1.0 81de22c] bug_fix commit
+ Date: Fri Feb 17 11:19:39 2023 +0530
+ 1 file changed, 1 insertion(+)
+ create mode 100644 bug_fix.txt
+thundersoft@desk053:~/cherry_pick$ git log --oneline
+81de22c (HEAD -> 1.0) bug_fix commit
+6c9c99e (master) first commit
+thundersoft@desk053:~/cherry_pick$ thundersoft@desk053:~/cherry_pick$ git log --oneline
+81de22c (HEAD -> 1.0) bug_fix commit
+6c9c99e (master) first commit
+thundersoft@desk053:~/cherry_pick$ 
+
+
