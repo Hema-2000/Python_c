@@ -1,0 +1,105 @@
+thundersoft@desk053:~$ mkdir amend_command
+thundersoft@desk053:~$ cd amend_command
+thundersoft@desk053:~/amend_command$ git init
+hint: Using 'master' as the name for the initial branch. This default branch name
+hint: is subject to change. To configure the initial branch name to use in all
+hint: of your new repositories, which will suppress this warning, call:
+hint: 
+hint: 	git config --global init.defaultBranch <name>
+hint: 
+hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+hint: 'development'. The just-created branch can be renamed via this command:
+hint: 
+hint: 	git branch -m <name>
+Initialized empty Git repository in /home/thundersoft/amend_command/.git/
+thundersoft@desk053:~/amend_command$ vi data.txt
+thundersoft@desk053:~/amend_command$ git add
+Nothing specified, nothing added.
+hint: Maybe you wanted to say 'git add .'?
+hint: Turn this message off by running
+hint: "git config advice.addEmptyPathspec false"
+thundersoft@desk053:~/amend_command$ git add .
+thundersoft@desk053:~/amend_command$ git commit -m "initial commit"
+[master (root-commit) 2a7f6f5] initial commit
+ 1 file changed, 1 insertion(+)
+ create mode 100644 data.txt
+thundersoft@desk053:~/amend_command$ git log --oneline
+2a7f6f5 (HEAD -> master) initial commit
+thundersoft@desk053:~/amend_command$ git show 2a7f6f5
+commit 2a7f6f5b0f5e232df90c6b716c25f3ce6e63bd38 (HEAD -> master)
+Author: hemalatha <hemalatha.chandaka@thundersoft.com>
+Date:   Fri Feb 17 10:35:50 2023 +0530
+
+    initial commit
+
+diff --git a/data.txt b/data.txt
+new file mode 100644
+index 0000000..186d1bb
+--- /dev/null
++++ b/data.txt
+@@ -0,0 +1 @@
++my name is hemalatha
+thundersoft@desk053:~/amend_command$ vi data.txt
+thundersoft@desk053:~/amend_command$ git add .
+thundersoft@desk053:~/amend_command$ git show 2a7f6f5
+commit 2a7f6f5b0f5e232df90c6b716c25f3ce6e63bd38 (HEAD -> master)
+Author: hemalatha <hemalatha.chandaka@thundersoft.com>
+Date:   Fri Feb 17 10:35:50 2023 +0530
+
+    initial commit
+
+diff --git a/data.txt b/data.txt
+new file mode 100644
+index 0000000..186d1bb
+--- /dev/null
++++ b/data.txt
+@@ -0,0 +1 @@
++my name is hemalatha
+thundersoft@desk053:~/amend_command$ git diff --cached
+diff --git a/data.txt b/data.txt
+index 186d1bb..1542274 100644
+--- a/data.txt
++++ b/data.txt
+@@ -1 +1,2 @@
+ my name is hemalatha
++iam from vizag
+thundersoft@desk053:~/amend_command$ git commit --amend
+[master 460cd53] wq initial commit
+ Date: Fri Feb 17 10:35:50 2023 +0530
+ 1 file changed, 2 insertions(+)
+ create mode 100644 data.txt
+thundersoft@desk053:~/amend_command$ git status
+On branch master
+nothing to commit, working tree clean
+thundersoft@desk053:~/amend_command$ git log --oneline
+460cd53 (HEAD -> master) wq initial commit
+thundersoft@desk053:~/amend_command$ git show 2a7f6f5
+commit 2a7f6f5b0f5e232df90c6b716c25f3ce6e63bd38
+Author: hemalatha <hemalatha.chandaka@thundersoft.com>
+Date:   Fri Feb 17 10:35:50 2023 +0530
+
+    initial commit
+
+diff --git a/data.txt b/data.txt
+new file mode 100644
+index 0000000..186d1bb
+--- /dev/null
++++ b/data.txt
+@@ -0,0 +1 @@
++my name is hemalatha
+thundersoft@desk053:~/amend_command$ git show 460cd53
+commit 460cd5303e67ca6db27df5473e6c4534ff6f0e16 (HEAD -> master)
+Author: hemalatha <hemalatha.chandaka@thundersoft.com>
+Date:   Fri Feb 17 10:35:50 2023 +0530
+
+    wq
+    initial commit
+
+diff --git a/data.txt b/data.txt
+new file mode 100644
+index 0000000..1542274
+--- /dev/null
++++ b/data.txt
+@@ -0,0 +1,2 @@
++my name is hemalatha
++iam from vizag
